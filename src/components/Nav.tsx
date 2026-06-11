@@ -9,18 +9,22 @@ const links = [
 
 export default function Nav() {
   return (
-    <header className="border-b border-bd">
+    <header className="sticky top-0 z-50 border-b border-bd bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <nav className="max-w-2xl mx-auto px-5 h-16 flex items-center justify-between">
-        <Link href="/" className="font-bold text-foreground hover:text-accent transition-colors">
+        <Link
+          href="/"
+          className="font-bold tracking-tight text-foreground hover:text-accent transition-colors"
+        >
           <span className="accent">~/</span>
           {site.handle}
+          <span className="accent animate-pulse">_</span>
         </Link>
-        <ul className="flex gap-5 text-sm">
+        <ul className="flex gap-1 text-sm">
           {links.map((l) => (
             <li key={l.href}>
               <Link
                 href={l.href}
-                className="text-muted hover:text-accent transition-colors"
+                className="px-3 py-1.5 rounded text-muted hover:text-accent hover:bg-surface transition-colors"
               >
                 {l.label}
               </Link>
