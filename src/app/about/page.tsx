@@ -13,13 +13,7 @@ export default function About() {
     "IBM",
     "Anthropic",
     "WhoX VPN",
-    "FastRetailing",
-    "Redis",
-    "Hexagon",
-    "Western Union",
     "GetYourGuide",
-    "Aboitiz",
-    "Smule",
   ];
 
   return (
