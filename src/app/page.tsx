@@ -12,7 +12,7 @@ export default function Home() {
           <span className="accent">$</span> whoami
         </h1>
         <p className="text-muted leading-relaxed">
-          <span className="text-foreground">{site.realName}</span> — {site.role}.
+          <span className="text-foreground">{site.name}</span> — {site.role}.
         </p>
       </section>
 
