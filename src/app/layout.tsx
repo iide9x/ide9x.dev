@@ -24,8 +24,12 @@ export const metadata: Metadata = {
   },
   description: site.description,
   icons: {
-    icon: "/favicon.ico",
-    apple: "/icon.png",
+    icon: [
+      { url: "/favicon.ico?v=3", sizes: "any" },
+      { url: "/icon.png?v=3", type: "image/png", sizes: "180x180" },
+    ],
+    shortcut: "/favicon.ico?v=3",
+    apple: "/icon.png?v=3",
   },
   openGraph: {
     title: `${site.name} — ${site.role}`,
