@@ -1,53 +1,50 @@
 import type { Metadata } from "next";
 import { site } from "@/lib/config";
+import { SocialIcon, Prompt } from "@/components/Icons";
 
 export const metadata: Metadata = {
   title: "Contact",
   description: `Get in touch with ${site.name}`,
 };
 
-const channels = [
-  { label: "github", value: site.links.github },
-  { label: "x / twitter", value: site.links.twitter },
-  { label: "hackerone", value: site.links.hackerone },
-  { label: "email", value: site.links.email },
-];
-
-function display(v: string) {
-  return v.replace(/^mailto:/, "").replace(/^https?:\/\//, "");
+function display(href: string) {
+  return href.replace(/^mailto:/, "").replace(/^https?:\/\//, "").replace(/\/$/, "");
 }
 
 export default function Contact() {
   return (
     <div>
-      <h1 className="text-2xl font-bold text-foreground mb-6">
-        <span className="accent">$</span> contact --me
+      <h1 className="flex items-center gap-2 text-2xl font-bold text-foreground mb-2">
+        <span className="accent">$</span> contact <span className="text-muted">--me</span>
       </h1>
-
       <p className="text-muted mb-8">
-        Reach out for security findings, collaboration, or just to say hi.
+        Security findings, collaboration, or just to say hi.
       </p>
 
-      <ul className="space-y-3">
-        {channels.map((c) => (
-          <li
-            key={c.label}
-            className="flex items-center gap-3 border border-bd rounded px-4 py-3 hover:border-accent/50 transition-colors"
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {site.socials.map((s) => (
+          <a
+            key={s.key}
+            href={s.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-3 border border-bd rounded-lg px-4 py-3 bg-surface/40 hover:border-accent/60 hover:bg-surface transition-all"
           >
-            <span className="text-xs uppercase tracking-widest text-muted w-28 shrink-0">
-              {c.label}
+            <span className="text-muted group-hover:text-accent transition-colors">
+              <SocialIcon name={s.key} className="w-5 h-5" />
             </span>
-            <a
-              href={c.value}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-foreground hover:text-accent transition-colors break-all"
-            >
-              {display(c.value)}
-            </a>
-          </li>
+            <span className="flex flex-col min-w-0">
+              <span className="text-sm text-foreground group-hover:text-accent transition-colors">
+                {s.label}
+              </span>
+              <span className="text-xs text-muted truncate">{display(s.href)}</span>
+            </span>
+            <span className="ml-auto text-muted/40 group-hover:text-accent transition-colors">
+              <Prompt className="w-4 h-4" />
+            </span>
+          </a>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

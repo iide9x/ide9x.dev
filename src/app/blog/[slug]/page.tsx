@@ -3,8 +3,13 @@ import { notFound } from "next/navigation";
 import { getAllSlugs, getPost, formatDate } from "@/lib/posts";
 import type { Metadata } from "next";
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
-  return getAllSlugs().map((slug) => ({ slug }));
+  const slugs = getAllSlugs();
+  // Provide a placeholder param when there are no posts yet so the
+  // static export step doesn't fail on an empty dynamic route.
+  return slugs.length > 0 ? slugs.map((slug) => ({ slug })) : [{ slug: "_" }];
 }
 
 export async function generateMetadata({

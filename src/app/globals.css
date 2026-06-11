@@ -21,7 +21,14 @@ html {
 
 body {
   color: var(--foreground);
-  background: var(--background);
+  background-color: var(--background);
+  /* subtle terminal grid + accent glow */
+  background-image:
+    radial-gradient(60rem 40rem at 50% -10%, rgba(57, 255, 20, 0.06), transparent 70%),
+    linear-gradient(rgba(57, 255, 20, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(57, 255, 20, 0.025) 1px, transparent 1px);
+  background-size: 100% 100%, 44px 44px, 44px 44px;
+  background-attachment: fixed;
   font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
   -webkit-font-smoothing: antialiased;
 }

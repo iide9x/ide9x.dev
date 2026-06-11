@@ -7,13 +7,13 @@ export default function Home() {
 
   return (
     <div>
-      <section className="mb-12">
-        <h1 className="text-2xl font-bold text-foreground mb-2">
+      <section className="mb-14">
+        <h1 className="flex items-center gap-2 text-2xl font-bold text-foreground mb-3">
           <span className="accent">$</span> whoami
         </h1>
         <p className="text-muted leading-relaxed">
-          {site.name} ({site.realName}) — {site.role}. Notes, writeups, and
-          findings from the things I break.
+          <span className="text-foreground">{site.name}</span> — {site.role}.
+          Notes, writeups, and findings from the things I break.
         </p>
       </section>
 
@@ -23,11 +23,14 @@ export default function Home() {
         </h2>
 
         {posts.length === 0 ? (
-          <p className="text-muted text-sm">
-            No posts yet. Drop a{" "}
-            <code className="text-accent">.md</code> file in{" "}
-            <code className="text-accent">content/posts/</code>.
-          </p>
+          <div className="border border-bd rounded-lg bg-surface/40 px-6 py-10 text-center">
+            <p className="text-foreground font-semibold mb-1">
+              <span className="accent">~</span> Coming soon
+            </p>
+            <p className="text-sm text-muted">
+              Writeups are on the way. Check back shortly.
+            </p>
+          </div>
         ) : (
           <ul className="space-y-6">
             {posts.map((p) => (

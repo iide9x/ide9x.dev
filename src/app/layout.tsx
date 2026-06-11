@@ -19,8 +19,8 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.handle} — ${site.role}`,
-    template: `%s — ${site.handle}`,
+    default: site.name,
+    template: `%s — ${site.name}`,
   },
   description: site.description,
   icons: {
@@ -28,15 +28,15 @@ export const metadata: Metadata = {
     apple: "/icon.png",
   },
   openGraph: {
-    title: `${site.handle} — ${site.role}`,
+    title: `${site.name} — ${site.role}`,
     description: site.description,
     url: site.url,
-    siteName: site.handle,
+    siteName: site.name,
     type: "website",
   },
   twitter: {
     card: "summary",
-    title: `${site.handle} — ${site.role}`,
+    title: `${site.name} — ${site.role}`,
     description: site.description,
   },
 };
