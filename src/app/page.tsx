@@ -7,13 +7,34 @@ export default function Home() {
 
   return (
     <div>
-      <section className="mb-14">
-        <h1 className="flex items-center gap-2 text-2xl font-bold text-foreground mb-3">
-          <span className="accent">$</span> whoami
-        </h1>
-        <p className="text-muted leading-relaxed">
-          <span className="text-foreground">{site.name}</span> — {site.role}.
-        </p>
+      {/* Terminal-card hero */}
+      <section className="mb-16">
+        <div className="rounded-xl border border-bd bg-surface/50 overflow-hidden shadow-[0_0_40px_-20px_rgba(57,255,20,0.4)]">
+          <div className="flex items-center gap-2 px-4 py-2.5 border-b border-bd bg-surface/80">
+            <span className="w-3 h-3 rounded-full bg-[#ff5f56]" />
+            <span className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
+            <span className="w-3 h-3 rounded-full bg-[#27c93f]" />
+            <span className="ml-2 text-xs text-muted">{site.handle}@ide9x:~</span>
+          </div>
+          <div className="px-5 py-6 space-y-2">
+            <p className="text-sm text-muted">
+              <span className="accent">$</span> whoami
+            </p>
+            <h1 className="text-2xl sm:text-3xl font-bold text-foreground">
+              {site.name}
+            </h1>
+            <p className="text-muted leading-relaxed">
+              {site.role}. Notes, writeups, and findings from the things I
+              break.
+            </p>
+            <p className="text-sm text-muted pt-1">
+              <span className="accent">$</span>{" "}
+              <span className="text-foreground">cat</span> ./focus &rarr; web ·
+              api · auth · cloud
+              <span className="accent animate-pulse">_</span>
+            </p>
+          </div>
+        </div>
       </section>
 
       <section>
@@ -22,7 +43,7 @@ export default function Home() {
         </h2>
 
         {posts.length === 0 ? (
-          <div className="border border-bd rounded-lg bg-surface/40 px-6 py-10 text-center">
+          <div className="border border-bd rounded-xl bg-surface/40 px-6 py-12 text-center">
             <p className="text-foreground font-semibold mb-1">
               <span className="accent">~</span> Coming soon
             </p>
@@ -31,10 +52,13 @@ export default function Home() {
             </p>
           </div>
         ) : (
-          <ul className="space-y-6">
+          <ul className="space-y-1">
             {posts.map((p) => (
               <li key={p.slug} className="group">
-                <Link href={`/blog/${p.slug}/`} className="block">
+                <Link
+                  href={`/blog/${p.slug}/`}
+                  className="block rounded-lg px-3 py-3 -mx-3 hover:bg-surface/60 transition-colors"
+                >
                   <div className="flex items-baseline gap-3 flex-wrap">
                     <span className="text-xs text-muted font-mono shrink-0">
                       {formatDate(p.date)}
