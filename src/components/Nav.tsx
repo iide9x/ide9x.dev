@@ -14,7 +14,7 @@ export default function Nav() {
   const pathname = usePathname();
   return (
     <header className="sticky top-0 z-50 border-b border-bd bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <nav className="max-w-2xl mx-auto px-5 h-16 flex items-center justify-between">
+      <nav className="max-w-3xl mx-auto px-5 h-16 flex items-center justify-between">
         <Link
           href="/"
           className="font-bold tracking-tight text-foreground hover:text-accent transition-colors"

@@ -30,7 +30,7 @@ export default function About() {
         </p>
         <p>
           <span className="text-foreground">Notable programs:</span> I&apos;ve reported
-          vulnerabilities to {programs.length}+ organizations including:
+          vulnerabilities to many companies including:
         </p>
         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm ml-4">
           {programs.map((p) => (

@@ -6,7 +6,7 @@ export default function Footer() {
   const email = social("email");
   return (
     <footer className="border-t border-bd mt-20">
-      <div className="max-w-2xl mx-auto px-5 py-8 flex flex-col sm:flex-row gap-4 items-center justify-between">
+      <div className="max-w-3xl mx-auto px-5 py-8 flex flex-col sm:flex-row gap-4 items-center justify-between">
         <span className="text-sm text-muted">
           © {year} <span className="text-foreground">{site.name}</span>
         </span>
