@@ -13,13 +13,7 @@ export default function About() {
     "IBM",
     "Anthropic",
     "WhoX VPN",
-    "FastRetailing",
-    "Redis",
-    "Hexagon",
-    "Western Union",
     "GetYourGuide",
-    "Aboitiz",
-    "Smule",
   ];
 
   return (
@@ -45,6 +39,10 @@ export default function About() {
               <span className="text-foreground">{p}</span>
             </li>
           ))}
+          <li className="flex items-center gap-2 text-muted italic">
+            <span className="accent">▸</span>
+            <span>and others…</span>
+          </li>
         </ul>
         <p>
           <span className="text-foreground">Focus areas:</span> web application security,
