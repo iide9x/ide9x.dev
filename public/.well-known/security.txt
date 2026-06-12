@@ -1,0 +1,4 @@
+Contact: mailto:iide9x@wearehackerone.com
+Preferred-Languages: en
+Canonical: https://ide9x.dev/.well-known/security.txt
+Expires: 2027-01-01T00:00:00.000Z
