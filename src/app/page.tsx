@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { getAllPostsMeta, formatDate } from "@/lib/posts";
 import { site } from "@/lib/config";
+import { SocialIcon } from "@/components/Icons";
 
 export default function Home() {
   const posts = getAllPostsMeta();
+  const heroSocials = site.socials.filter((s) => s.key !== "email");
 
   return (
     <div>
@@ -33,6 +35,38 @@ export default function Home() {
               api · auth · cloud
               <span className="accent animate-pulse">_</span>
             </p>
+
+            {/* Quick links + socials */}
+            <div className="flex flex-wrap items-center gap-3 pt-4">
+              <Link
+                href="/about/"
+                className="text-sm rounded-md border border-bd px-3 py-1.5 text-foreground hover:border-accent/60 hover:text-accent transition-colors"
+              >
+                about
+              </Link>
+              <Link
+                href="/contact/"
+                className="text-sm rounded-md border border-bd px-3 py-1.5 text-foreground hover:border-accent/60 hover:text-accent transition-colors"
+              >
+                contact
+              </Link>
+              <span className="hidden sm:block w-px h-5 bg-bd mx-1" />
+              <div className="flex items-center gap-1">
+                {heroSocials.map((s) => (
+                  <a
+                    key={s.key}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={s.label}
+                    title={s.label}
+                    className="p-2 rounded-md text-muted hover:text-accent hover:bg-surface transition-colors"
+                  >
+                    <SocialIcon name={s.key} className="w-[18px] h-[18px]" />
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
