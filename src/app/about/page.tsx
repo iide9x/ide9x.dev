@@ -17,15 +17,32 @@ export default function About() {
   ];
 
   const focus = [
-    "Web application & API security",
-    "Authentication & access-control flaws",
-    "Cloud & infrastructure misconfigurations",
-    "Chaining low-severity issues into critical impact",
+    {
+      title: "Web & API security",
+      desc: "Hunting logic flaws and injection across modern web apps and APIs.",
+    },
+    {
+      title: "Auth & access control",
+      desc: "Broken authentication, IDORs, and privilege-escalation paths.",
+    },
+    {
+      title: "Cloud & infra",
+      desc: "Misconfigurations, exposed services, and metadata exploitation.",
+    },
+    {
+      title: "Impact chaining",
+      desc: "Turning low-severity bugs into critical, demonstrable impact.",
+    },
   ];
 
   const stack = [
-    "Recon & content discovery (custom wordlists, JS analysis)",
-    "Burp Suite, custom tooling, and a lot of curl",
+    "Recon",
+    "Content discovery",
+    "Custom wordlists",
+    "JS analysis",
+    "Burp Suite",
+    "Custom tooling",
+    "curl",
   ];
 
   return (
@@ -48,8 +65,8 @@ export default function About() {
             </p>
             <p>
               I spend my time finding and reporting vulnerabilities, and turning
-              small bugs into bigger impact. This site is where I publish
-              writeups and notes from that work.
+              small bugs into bigger impact. This site is where I publish my
+              writeups and findings.
             </p>
           </div>
         </div>
@@ -80,34 +97,44 @@ export default function About() {
         </ul>
       </section>
 
-      {/* Focus areas */}
+      {/* Focus areas — numbered cards */}
       <section>
         <h2 className="text-sm uppercase tracking-widest text-muted mb-4">
           {"// focus areas"}
         </h2>
-        <ul className="space-y-2 text-muted leading-relaxed">
-          {focus.map((f) => (
-            <li key={f} className="flex gap-2">
-              <span className="accent">▸</span>
-              <span>{f}</span>
-            </li>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {focus.map((f, i) => (
+            <div
+              key={f.title}
+              className="group rounded-lg border border-bd bg-surface/40 p-4 hover:border-accent/50 hover:bg-surface transition-colors"
+            >
+              <div className="flex items-center gap-2 mb-1.5">
+                <span className="text-xs font-mono text-accent">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="text-foreground font-semibold">{f.title}</h3>
+              </div>
+              <p className="text-sm text-muted leading-relaxed">{f.desc}</p>
+            </div>
           ))}
-        </ul>
+        </div>
       </section>
 
-      {/* Stack */}
+      {/* Stack — tool chips */}
       <section>
         <h2 className="text-sm uppercase tracking-widest text-muted mb-4">
           {"// stack"}
         </h2>
-        <ul className="space-y-2 text-muted leading-relaxed">
+        <div className="flex flex-wrap gap-2">
           {stack.map((s) => (
-            <li key={s} className="flex gap-2">
-              <span className="accent">▸</span>
-              <span>{s}</span>
-            </li>
+            <span
+              key={s}
+              className="text-sm rounded-md border border-bd bg-surface/40 px-3 py-1.5 text-foreground hover:border-accent/50 transition-colors"
+            >
+              {s}
+            </span>
           ))}
-        </ul>
+        </div>
       </section>
     </div>
   );
