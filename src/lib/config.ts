@@ -34,7 +34,6 @@ export const site = {
   socials: [
     { key: "hackerone", label: "HackerOne", href: "https://hackerone.com/iide9x" },
     { key: "bugcrowd", label: "Bugcrowd", href: "https://bugcrowd.com/h/iide9x" },
-    { key: "github", label: "GitHub", href: "https://github.com/iide9x" },
     { key: "twitter", label: "X / Twitter", href: "https://x.com/ide9x" },
     { key: "telegram", label: "Telegram", href: "https://t.me/iide9x" },
     { key: "linkedin", label: "LinkedIn", href: "https://linkedin.com/in/ide9x" },
