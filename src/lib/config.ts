@@ -9,6 +9,7 @@ export type SocialKey =
   | "hackerone"
   | "bugcrowd"
   | "telegram"
+  | "channel"
   | "linkedin"
   | "discord"
   | "email";
@@ -36,6 +37,7 @@ export const site = {
     { key: "bugcrowd", label: "Bugcrowd", href: "https://bugcrowd.com/h/iide9x" },
     { key: "twitter", label: "X / Twitter", href: "https://x.com/ide9x" },
     { key: "telegram", label: "Telegram", href: "https://t.me/iide9x" },
+    { key: "channel", label: "Cybersec Writeups", href: "https://t.me/bugw9" },
     { key: "linkedin", label: "LinkedIn", href: "https://linkedin.com/in/ide9x" },
     { key: "discord", label: "Discord", href: "https://discord.com/users/1276179026536300667" },
     { key: "email", label: "Email", href: "mailto:iide9x@wearehackerone.com" },
