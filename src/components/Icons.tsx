@@ -41,6 +41,19 @@ export function SocialIcon({
   name: SocialKey;
   className?: string;
 }) {
+  // Brand logos that only read correctly in their own colors — render the
+  // real artwork on a white chip so they stay recognizable on the dark theme.
+  if (name === "hackerone" || name === "bugcrowd") {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={`/${name}.png`}
+        alt={name}
+        className={`${className} rounded-[5px] bg-white p-[3px] object-contain`}
+      />
+    );
+  }
+
   return (
     <svg
       viewBox="0 0 24 24"

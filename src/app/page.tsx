@@ -26,8 +26,7 @@ export default function Home() {
               {site.name}
             </h1>
             <p className="text-muted leading-relaxed">
-              {site.role}. Notes, writeups, and findings from the things I
-              break.
+              {site.role}. Writeups and findings from the things I break.
             </p>
             <p className="text-sm text-muted pt-1">
               <span className="accent">$</span>{" "}
