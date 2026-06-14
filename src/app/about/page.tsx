@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { site } from "@/lib/config";
+import { SocialIcon } from "@/components/Icons";
 
 export const metadata: Metadata = {
   title: "About",
@@ -14,7 +15,12 @@ export default function About() {
     "Anthropic",
     "WhoX VPN",
     "GetYourGuide",
+    "Aboitizpower",
   ];
+
+  const platforms = site.socials.filter(
+    (s) => s.key === "hackerone" || s.key === "bugcrowd",
+  );
 
   const focus = [
     {
@@ -24,10 +30,6 @@ export default function About() {
     {
       title: "Authentication & authorization",
       tags: ["Account takeover", "IDOR", "OAuth", "Privilege escalation"],
-    },
-    {
-      title: "Cloud & infrastructure",
-      tags: ["Exposed services", "Leaked secrets", "SSRF", "Misconfig"],
     },
   ];
 
@@ -87,6 +89,21 @@ export default function About() {
           <span className="rounded-lg px-3.5 py-2 text-sm text-faint italic">
             and others…
           </span>
+        </div>
+
+        <div className="mt-6 flex flex-wrap gap-3">
+          {platforms.map((p) => (
+            <a
+              key={p.key}
+              href={p.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-2.5 rounded-lg border border-bd bg-surface/40 px-3.5 py-2.5 text-sm hover:bg-surface/80 hover:border-faint/40 transition-all"
+            >
+              <SocialIcon name={p.key} className="w-5 h-5" />
+              <span className="font-medium text-foreground">{p.label}</span>
+            </a>
+          ))}
         </div>
       </section>
 
