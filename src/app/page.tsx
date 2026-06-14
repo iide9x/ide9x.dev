@@ -1,11 +1,9 @@
 import Link from "next/link";
 import { getAllPostsMeta, formatDate } from "@/lib/posts";
 import { site } from "@/lib/config";
-import { SocialIcon } from "@/components/Icons";
 
 export default function Home() {
   const posts = getAllPostsMeta();
-  const heroSocials = site.socials.filter((s) => s.key !== "email");
   const focus = ["Web", "API", "Auth", "Cloud"];
 
   return (
@@ -45,22 +43,6 @@ export default function Home() {
           >
             Get in touch
           </Link>
-          <span className="hidden sm:block w-px h-6 bg-bd mx-1" />
-          <div className="flex items-center gap-1">
-            {heroSocials.map((s) => (
-              <a
-                key={s.key}
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={s.label}
-                title={s.label}
-                className="p-2 rounded-md text-faint hover:text-accent hover:bg-surface transition-colors"
-              >
-                <SocialIcon name={s.key} className="w-[18px] h-[18px]" />
-              </a>
-            ))}
-          </div>
         </div>
       </section>
 
