@@ -37,22 +37,24 @@ export default async function BlogPost({
     <article>
       <Link
         href="/"
-        className="text-sm text-muted hover:text-accent transition-colors"
+        className="text-sm text-faint hover:text-foreground transition-colors"
       >
-        ← back
+        ← Back to writeups
       </Link>
 
-      <header className="mt-6 mb-8">
-        <div className="text-xs text-muted font-mono mb-2">
+      <header className="mt-6 mb-10">
+        <div className="text-xs text-faint font-mono mb-3">
           {formatDate(post.date)}
         </div>
-        <h1 className="text-2xl font-bold text-foreground">{post.title}</h1>
+        <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-foreground text-balance">
+          {post.title}
+        </h1>
         {post.tags.length > 0 && (
-          <div className="flex gap-2 mt-3">
+          <div className="flex gap-2 mt-4">
             {post.tags.map((t) => (
               <span
                 key={t}
-                className="text-xs text-muted border border-bd px-1.5 py-0.5 rounded"
+                className="text-xs font-mono text-faint border border-bd px-2 py-0.5 rounded-full"
               >
                 {t}
               </span>
