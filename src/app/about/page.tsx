@@ -19,30 +19,31 @@ export default function About() {
   const focus = [
     {
       title: "Web & API security",
-      desc: "Logic flaws and injection across modern web applications and APIs.",
+      desc: "Hunting business-logic flaws, injection, and broken access control in modern web apps and the APIs behind them.",
     },
     {
-      title: "Auth & access control",
-      desc: "Broken authentication, IDORs, and privilege-escalation paths.",
+      title: "Authentication & authorization",
+      desc: "Account takeover, IDORs, OAuth and session weaknesses, and privilege escalation between users and tenants.",
     },
     {
       title: "Cloud & infrastructure",
-      desc: "Misconfigurations, exposed services, and metadata exploitation.",
-    },
-    {
-      title: "Impact chaining",
-      desc: "Turning small bugs into critical, demonstrable impact.",
+      desc: "Exposed services, leaked secrets, and misconfigurations that open a path from the edge to internal systems.",
     },
   ];
 
-  const stack = [
-    "Recon",
-    "Content discovery",
-    "Custom wordlists",
-    "JS analysis",
-    "Burp Suite",
-    "Custom tooling",
-    "curl",
+  const work = [
+    {
+      title: "Map the attack surface",
+      desc: "Deep recon — subdomains, endpoints, and JavaScript — to understand how an application is really put together.",
+    },
+    {
+      title: "Hunt with intent",
+      desc: "Manual testing guided by how the app behaves, not a checklist. The interesting bugs live in the edge cases.",
+    },
+    {
+      title: "Prove real impact",
+      desc: "Every finding ships with a working proof of concept and a clear write-up of what an attacker actually gains.",
+    },
   ];
 
   return (
@@ -91,37 +92,47 @@ export default function About() {
 
       {/* Focus areas */}
       <section>
-        <h2 className="text-xl font-semibold tracking-tight text-foreground mb-5">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground mb-2">
           What I focus on
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <p className="text-muted leading-relaxed mb-5 max-w-xl">
+          The areas where I spend most of my research time.
+        </p>
+        <div className="divide-y divide-bd border-y border-bd">
           {focus.map((f) => (
-            <div
-              key={f.title}
-              className="rounded-xl border border-bd bg-surface/40 p-5 hover:bg-surface/70 transition-colors"
-            >
+            <div key={f.title} className="py-5 first:pt-0 last:pb-0">
               <h3 className="text-foreground font-medium mb-1.5">{f.title}</h3>
-              <p className="text-sm text-muted leading-relaxed">{f.desc}</p>
+              <p className="text-sm text-muted leading-relaxed max-w-2xl">
+                {f.desc}
+              </p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Stack */}
+      {/* How I work */}
       <section>
-        <h2 className="text-xl font-semibold tracking-tight text-foreground mb-5">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground mb-2">
           How I work
         </h2>
-        <div className="flex flex-wrap gap-2">
-          {stack.map((s) => (
-            <span
-              key={s}
-              className="text-sm font-mono rounded-full border border-bd bg-surface/40 px-3 py-1.5 text-muted"
-            >
-              {s}
-            </span>
+        <p className="text-muted leading-relaxed mb-6 max-w-xl">
+          A simple loop I keep coming back to on every target.
+        </p>
+        <ol className="space-y-4">
+          {work.map((w, i) => (
+            <li key={w.title} className="flex gap-4">
+              <span className="shrink-0 mt-0.5 flex items-center justify-center w-8 h-8 rounded-lg border border-bd bg-surface/40 text-sm font-mono text-accent">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div>
+                <h3 className="text-foreground font-medium mb-1">{w.title}</h3>
+                <p className="text-sm text-muted leading-relaxed max-w-xl">
+                  {w.desc}
+                </p>
+              </div>
+            </li>
           ))}
-        </div>
+        </ol>
       </section>
     </div>
   );
