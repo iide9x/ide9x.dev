@@ -1,7 +1,5 @@
 import type { SocialKey } from "@/lib/config";
 
-type IconProps = { className?: string };
-
 // All icons are 24x24, use currentColor, single-path where possible.
 const paths: Record<SocialKey, React.ReactNode> = {
   github: (
@@ -52,25 +50,6 @@ export function SocialIcon({
       aria-hidden="true"
     >
       {paths[name]}
-    </svg>
-  );
-}
-
-// Decorative terminal prompt glyph used in headings.
-export function Prompt({ className = "w-4 h-4" }: IconProps) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.4"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-      aria-hidden="true"
-    >
-      <path d="M5 7l5 5-5 5" />
-      <path d="M13 17h6" />
     </svg>
   );
 }

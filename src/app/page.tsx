@@ -6,111 +6,106 @@ import { SocialIcon } from "@/components/Icons";
 export default function Home() {
   const posts = getAllPostsMeta();
   const heroSocials = site.socials.filter((s) => s.key !== "email");
+  const focus = ["Web", "API", "Auth", "Cloud"];
 
   return (
-    <div>
-      {/* Terminal-card hero */}
-      <section className="mb-16">
-        <div className="rounded-xl border border-bd bg-surface/50 overflow-hidden shadow-[0_0_40px_-20px_rgba(57,255,20,0.4)]">
-          <div className="flex items-center gap-2 px-4 py-2.5 border-b border-bd bg-surface/80">
-            <span className="w-3 h-3 rounded-full bg-[#ff5f56]" />
-            <span className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
-            <span className="w-3 h-3 rounded-full bg-[#27c93f]" />
-            <span className="ml-2 text-xs text-muted">{site.handle}@ide9x:~</span>
-          </div>
-          <div className="px-5 py-6 space-y-2">
-            <p className="text-sm text-muted">
-              <span className="accent">$</span> whoami
-            </p>
-            <h1 className="text-2xl sm:text-3xl font-bold text-foreground">
-              {site.name}
-            </h1>
-            <p className="text-muted leading-relaxed">
-              {site.role}. Writeups and findings from the things I break.
-            </p>
-            <p className="text-sm text-muted pt-1">
-              <span className="accent">$</span>{" "}
-              <span className="text-foreground">cat</span> ./focus &rarr; web ·
-              api · auth · cloud
-              <span className="accent animate-pulse">_</span>
-            </p>
+    <div className="space-y-20">
+      {/* Hero */}
+      <section className="pt-2">
+        <p className="eyebrow mb-4">Security Researcher</p>
+        <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight text-foreground text-balance">
+          Hi, I&apos;m {site.name}.
+        </h1>
+        <p className="mt-5 text-lg text-muted leading-relaxed max-w-xl text-balance">
+          I find and report security vulnerabilities, then write about how
+          they work. This is where I share my findings and writeups.
+        </p>
 
-            {/* Quick links + socials */}
-            <div className="flex flex-wrap items-center gap-3 pt-4">
-              <Link
-                href="/about/"
-                className="text-sm rounded-md border border-bd px-3 py-1.5 text-foreground hover:border-accent/60 hover:text-accent transition-colors"
+        <div className="mt-7 flex flex-wrap gap-2">
+          {focus.map((f) => (
+            <span
+              key={f}
+              className="text-xs font-mono rounded-full border border-bd bg-surface/60 px-3 py-1 text-muted"
+            >
+              {f}
+            </span>
+          ))}
+        </div>
+
+        <div className="mt-8 flex flex-wrap items-center gap-3">
+          <Link
+            href="/about/"
+            className="rounded-lg bg-accent px-4 py-2 text-sm font-medium text-background hover:opacity-90 transition-opacity"
+          >
+            About me
+          </Link>
+          <Link
+            href="/contact/"
+            className="rounded-lg border border-bd px-4 py-2 text-sm font-medium text-foreground hover:bg-surface transition-colors"
+          >
+            Get in touch
+          </Link>
+          <span className="hidden sm:block w-px h-6 bg-bd mx-1" />
+          <div className="flex items-center gap-1">
+            {heroSocials.map((s) => (
+              <a
+                key={s.key}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={s.label}
+                title={s.label}
+                className="p-2 rounded-md text-faint hover:text-accent hover:bg-surface transition-colors"
               >
-                about
-              </Link>
-              <Link
-                href="/contact/"
-                className="text-sm rounded-md border border-bd px-3 py-1.5 text-foreground hover:border-accent/60 hover:text-accent transition-colors"
-              >
-                contact
-              </Link>
-              <span className="hidden sm:block w-px h-5 bg-bd mx-1" />
-              <div className="flex items-center gap-1">
-                {heroSocials.map((s) => (
-                  <a
-                    key={s.key}
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={s.label}
-                    title={s.label}
-                    className="p-2 rounded-md text-muted hover:text-accent hover:bg-surface transition-colors"
-                  >
-                    <SocialIcon name={s.key} className="w-[18px] h-[18px]" />
-                  </a>
-                ))}
-              </div>
-            </div>
+                <SocialIcon name={s.key} className="w-[18px] h-[18px]" />
+              </a>
+            ))}
           </div>
         </div>
       </section>
 
+      {/* Writeups */}
       <section>
-        <h2 className="text-sm uppercase tracking-widest text-muted mb-6">
-          {"// posts"}
-        </h2>
+        <div className="flex items-baseline justify-between mb-6">
+          <h2 className="text-xl font-semibold tracking-tight text-foreground">
+            Writeups
+          </h2>
+        </div>
 
         {posts.length === 0 ? (
-          <div className="border border-bd rounded-xl bg-surface/40 px-6 py-12 text-center">
-            <p className="text-foreground font-semibold mb-1">
-              <span className="accent">~</span> Coming soon
-            </p>
+          <div className="rounded-2xl border border-bd bg-surface/40 px-6 py-14 text-center">
+            <p className="text-foreground font-medium mb-1">Coming soon</p>
             <p className="text-sm text-muted">
-              Writeups are on the way. Check back shortly.
+              Writeups are on the way — check back shortly.
             </p>
           </div>
         ) : (
-          <ul className="space-y-1">
+          <ul className="space-y-2">
             {posts.map((p) => (
-              <li key={p.slug} className="group">
+              <li key={p.slug}>
                 <Link
                   href={`/blog/${p.slug}/`}
-                  className="block rounded-lg px-3 py-3 -mx-3 hover:bg-surface/60 transition-colors"
+                  className="block rounded-xl border border-transparent hover:border-bd hover:bg-surface/50 px-4 py-4 -mx-4 transition-colors"
                 >
                   <div className="flex items-baseline gap-3 flex-wrap">
-                    <span className="text-xs text-muted font-mono shrink-0">
+                    <span className="text-xs text-faint font-mono shrink-0">
                       {formatDate(p.date)}
                     </span>
-                    <span className="text-foreground group-hover:text-accent transition-colors font-semibold">
+                    <span className="text-foreground font-medium">
                       {p.title}
                     </span>
                   </div>
                   {p.excerpt && (
-                    <p className="text-sm text-muted mt-1 line-clamp-2">
+                    <p className="text-sm text-muted mt-1.5 line-clamp-2">
                       {p.excerpt}
                     </p>
                   )}
                   {p.tags.length > 0 && (
-                    <div className="flex gap-2 mt-2">
+                    <div className="flex gap-2 mt-2.5">
                       {p.tags.map((t) => (
                         <span
                           key={t}
-                          className="text-xs text-muted border border-bd px-1.5 py-0.5 rounded"
+                          className="text-xs font-mono text-faint border border-bd px-2 py-0.5 rounded-full"
                         >
                           {t}
                         </span>
