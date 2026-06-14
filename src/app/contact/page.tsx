@@ -52,7 +52,9 @@ function Card({ s }: { s: Social }) {
 
 export default function Contact() {
   const email = site.socials.find((s) => s.key === "email");
-  const rest = site.socials.filter((s) => s.key !== "email");
+  const rest = site.socials.filter(
+    (s) => s.key !== "email" && s.key !== "hackerone" && s.key !== "bugcrowd",
+  );
 
   return (
     <div className="space-y-12">
