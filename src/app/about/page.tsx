@@ -19,15 +19,15 @@ export default function About() {
   const focus = [
     {
       title: "Web & API security",
-      desc: "Hunting business-logic flaws, injection, and broken access control in modern web apps and the APIs behind them.",
+      tags: ["Business logic", "Injection", "Access control", "GraphQL"],
     },
     {
       title: "Authentication & authorization",
-      desc: "Account takeover, IDORs, OAuth and session weaknesses, and privilege escalation between users and tenants.",
+      tags: ["Account takeover", "IDOR", "OAuth", "Privilege escalation"],
     },
     {
       title: "Cloud & infrastructure",
-      desc: "Exposed services, leaked secrets, and misconfigurations that open a path from the edge to internal systems.",
+      tags: ["Exposed services", "Leaked secrets", "SSRF", "Misconfig"],
     },
   ];
 
@@ -95,16 +95,31 @@ export default function About() {
         <h2 className="text-xl font-semibold tracking-tight text-foreground mb-2">
           What I focus on
         </h2>
-        <p className="text-muted leading-relaxed mb-5 max-w-xl">
-          The areas where I spend most of my research time.
+        <p className="text-muted leading-relaxed mb-6 max-w-xl">
+          Where I spend most of my research time.
         </p>
-        <div className="divide-y divide-bd border-y border-bd">
-          {focus.map((f) => (
-            <div key={f.title} className="py-5 first:pt-0 last:pb-0">
-              <h3 className="text-foreground font-medium mb-1.5">{f.title}</h3>
-              <p className="text-sm text-muted leading-relaxed max-w-2xl">
-                {f.desc}
-              </p>
+        <div className="space-y-3">
+          {focus.map((f, i) => (
+            <div
+              key={f.title}
+              className="rounded-xl border border-bd bg-surface/40 p-5 hover:bg-surface/70 transition-colors"
+            >
+              <div className="flex items-center gap-2.5 mb-3.5">
+                <span className="font-mono text-xs text-accent">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="text-foreground font-medium">{f.title}</h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {f.tags.map((t) => (
+                  <span
+                    key={t}
+                    className="text-xs rounded-full border border-bd bg-background/60 px-2.5 py-1 text-muted"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
             </div>
           ))}
         </div>
