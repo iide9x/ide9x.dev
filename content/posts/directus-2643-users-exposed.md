@@ -131,15 +131,11 @@ print(f'Internal emails: {len(corp)}')
 
 Output: `Internal emails: 964`
 
-The full breakdown from the largest export:
-
-| Category | Count |
-|----------|-------|
-| Internal company employees | 964 |
-| Partner company employees | 1,266 |
-| Generic email (gmail, hotmail, etc.) | 345 |
-| Government / Education / Military | 68 |
-| **Total unique users** | **2,643** |
+Breaking down the 2,643 unique users from the largest export:
+- 964 were internal company employees (@company.com)
+- 1,266 were partner company employees
+- 345 used generic email providers (gmail, hotmail, etc.)
+- 68 were from government, education, or military domains
 
 Four accounts held the admin role. Two of them were vendor accounts from a third-party development firm. One of those was `test@test.com` — a dev throwaway sitting in production with full CMS admin privileges.
 
