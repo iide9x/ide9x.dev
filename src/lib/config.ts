@@ -24,11 +24,10 @@ export const site = {
   handle: "ide9x",
   name: "DestroyerX",
   realName: "Ahmed",
-  role: "Security Researcher & Bug Bounty Hunter",
+  role: "Security Stuffs",
   domain: "ide9x.dev",
   url: "https://ide9x.dev",
-  description:
-    "Security research, bug bounty writeups, and findings by DestroyerX (ide9x).",
+  description: "Security research and bug bounty writeups.",
 
   // Primary contact + the social grid on /contact.
   // Reorder / remove freely — icons are wired in src/components/Icons.tsx.

@@ -21,38 +21,39 @@ export async function generateMetadata({
   const post = await getPost(params.slug);
   if (!post) return { title: "Not found" };
 
-  const metadata: Metadata = {
+  const postUrl = `${site.url}/blog/${params.slug}/`;
+
+  const og: Metadata["openGraph"] = {
     title: post.title,
-    description: post.excerpt,
+    description: post.excerpt ?? "",
+    url: postUrl,
+    siteName: site.name,
+    type: "article",
   };
 
+  let twCard: "summary" | "summary_large_image" = "summary";
+  let twImages: string[] | undefined;
+
   if (post.image) {
-    const imageUrl = `${site.url}${post.image.startsWith('/') ? post.image : `/${post.image}`}`;
-    // Ensure openGraph exists and add image
-    if (!metadata.openGraph) {
-      metadata.openGraph = {
-        images: [],
-      };
-    }
-    metadata.openGraph.images = [
-      {
-        url: imageUrl,
-        width: 1200,
-        height: 630,
-        alt: post.title,
-      },
-    ];
-    // Ensure twitter exists and set card and image
-    if (!metadata.twitter) {
-      metadata.twitter = {
-        card: 'summary_large_image',
-      };
-    }
-    metadata.twitter.card = 'summary_large_image';
-    metadata.twitter.images = [imageUrl];
+    const imageUrl = `${site.url}${post.image.startsWith("/") ? post.image : `/${post.image}`}`;
+    og.images = [{ url: imageUrl, width: 1200, height: 630, alt: post.title }];
+    twCard = "summary_large_image";
+    twImages = [imageUrl];
   }
 
-  return metadata;
+  const tw: Metadata["twitter"] = {
+    card: twCard,
+    title: post.title,
+    description: post.excerpt ?? "",
+    ...(twImages && { images: twImages }),
+  };
+
+  return {
+    title: post.title,
+    description: post.excerpt,
+    openGraph: og,
+    twitter: tw,
+  };
 }
 
 export default async function BlogPost({
