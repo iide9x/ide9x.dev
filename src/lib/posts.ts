@@ -13,11 +13,17 @@ export type PostMeta = {
   tags: string[];
   excerpt: string;
   image?: string;
+  readingTime: number;
 };
 
 export type Post = PostMeta & {
   contentHtml: string;
 };
+
+function estimateReadingTime(text: string): number {
+  const words = text.trim().split(/\s+/).length;
+  return Math.max(1, Math.round(words / 230));
+}
 
 function ensureDir(): boolean {
   return fs.existsSync(postsDir);
@@ -45,6 +51,7 @@ export function getAllPostsMeta(): PostMeta[] {
         (data.excerpt as string) ||
         content.replace(/[#>*`_\-]/g, "").trim().slice(0, 160),
       image: (data.image as string) || undefined,
+      readingTime: estimateReadingTime(content),
     };
   });
   // newest first
@@ -64,6 +71,7 @@ export async function getPost(slug: string): Promise<Post | null> {
     tags: (data.tags as string[]) || [],
     excerpt: (data.excerpt as string) || "",
     image: (data.image as string) || undefined,
+    readingTime: estimateReadingTime(content),
     contentHtml: processed.toString(),
   };
 }

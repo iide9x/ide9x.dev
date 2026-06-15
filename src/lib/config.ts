@@ -24,7 +24,7 @@ export const site = {
   handle: "ide9x",
   name: "DestroyerX",
   realName: "Ahmed",
-  role: "Security Stuffs",
+  role: "Security Researcher",
   domain: "ide9x.dev",
   url: "https://ide9x.dev",
   description: "Security research and bug bounty writeups.",

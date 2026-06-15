@@ -71,7 +71,7 @@ export default function Home() {
                 >
                   <div className="flex items-baseline gap-3 flex-wrap">
                     <span className="text-xs text-faint font-mono shrink-0">
-                      {formatDate(p.date)}
+                      {formatDate(p.date)} · {p.readingTime} min
                     </span>
                     <span className="text-foreground font-medium">
                       {p.title}

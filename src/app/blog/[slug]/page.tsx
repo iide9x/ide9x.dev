@@ -75,7 +75,7 @@ export default async function BlogPost({
 
       <header className="mt-6 mb-10">
         <div className="text-xs text-faint font-mono mb-3">
-          {formatDate(post.date)}
+          {formatDate(post.date)} · {post.readingTime} min read
         </div>
         <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-foreground text-balance">
           {post.title}
