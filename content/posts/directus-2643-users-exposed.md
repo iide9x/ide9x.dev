@@ -1,8 +1,8 @@
 ---
 title: "2,643 Users Exposed: The Hidden Cost of a Forgotten Permission"
-date: "2026-03-27"
-tags: ["CMS", "Directus", "Unauth-API", "PII", "CVE-2025-55746"]
-excerpt: "A misconfigured public role permission on a Directus CMS endpoint leaked 2,643 user records, 964 internal employee emails, and a complete partner ecosystem map — no auth required. CVE-2025-55746."
+date: "2026-06-15"
+tags: ["CMS", "Directus", "Unauth-API", "PII"]
+excerpt: "A misconfigured public role permission on a Directus CMS endpoint leaked 2,643 user records, 964 internal employee emails, and a complete partner ecosystem map — no auth required."
 ---
 
 I was grinding through subdomain enumeration on a bug bounty target when I found a Directus CMS instance with a permission that should've never been granted. One `curl` later, I had 220 files. 33 of them were database exports. 2,643 user records. No authentication.
@@ -57,8 +57,6 @@ Five full user table dumps. Sitting in public storage. The filenames include tim
 Directus has a public role that controls what unauthenticated users can access. By default, it can't do anything. But someone granted READ on `directus_files` — probably during development so frontend images would load without auth. The problem is `directus_files` is a flat collection. It doesn't separate a hero image from a database dump. If you grant READ on it, you grant READ on everything the CMS stores.
 
 And `limit=-1`? Directus strips the pagination clause from the SQL query when it sees that value. No server-side cap. The database returns every row the permission check passes. One request, full dataset.
-
-This is documented in CVE-2025-55746 — the Directus permission model allows unauthenticated access to system collections when the public role is misconfigured.
 
 ## Pulling the Exports
 
@@ -136,7 +134,7 @@ Output: `Internal emails: 964`
 The full breakdown from the largest export:
 
 | Category | Count |
-|---|---|
+|----------|-------|
 | Internal company employees | 964 |
 | Partner company employees | 1,266 |
 | Generic email (gmail, hotmail, etc.) | 345 |
@@ -183,7 +181,7 @@ Maybe 10 minutes from finding the subdomain to having 2,643 records on disk.
 
 ## Credit
 
-I'd been reading [**@4osp3l**'s writeup on breaking Directus CMS](https://4osp3l.blogspot.com/2026/03/breaking-directus-cms-1193-from.html) the week before. His research on `/files` enumeration and CVE-2025-55746 is what made me check this endpoint. If you hunt Directus instances, read his stuff first.
+I'd been reading **@4osp3l**'s writeup on [breaking Directus CMS](https://4osp3l.blogspot.com/2026/03/breaking-directus-cms-1193-from.html) the week before. His research on `/files` enumeration is what made me check this endpoint. If you hunt Directus instances, read his stuff first.
 
 ## What to Take From This
 
