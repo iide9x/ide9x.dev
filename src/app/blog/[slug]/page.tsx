@@ -30,7 +30,6 @@ export async function generateMetadata({
     const imageUrl = `${site.url}${post.image.startsWith('/') ? post.image : `/${post.image}`}`;
     // Open Graph
     baseMetadata.openGraph = {
-      ...(baseMetadata.openGraph ?? {}),
       images: [
         {
           url: imageUrl,
@@ -42,7 +41,6 @@ export async function generateMetadata({
     };
     // Twitter
     baseMetadata.twitter = {
-      ...(baseMetadata.twitter ?? {}),
       card: 'summary_large_image',
       images: [imageUrl],
     };
