@@ -4,6 +4,8 @@ date: "2026-06-15"
 tags: ["CMS", "Directus", "Unauth-API", "PII"]
 excerpt: "A misconfigured public role permission on a Directus CMS endpoint leaked 2,643 user records, 964 internal employee emails, and a complete partner ecosystem map — no auth required."
 ---
+![Directus CMS Data Exposure Banner](/images/directus-banner.png)
+
 
 I was grinding through subdomain enumeration on a bug bounty target when I found a Directus CMS instance with a permission that should've never been granted. One `curl` later, I had 220 files. 33 of them were database exports. 2,643 user records. No authentication.
 
