@@ -21,15 +21,14 @@ export async function generateMetadata({
   const post = await getPost(params.slug);
   if (!post) return { title: "Not found" };
 
-  const baseMetadata: Metadata = {
+  const metadata: Metadata = {
     title: post.title,
     description: post.excerpt,
   };
 
   if (post.image) {
     const imageUrl = `${site.url}${post.image.startsWith('/') ? post.image : `/${post.image}`}`;
-    // Open Graph
-    baseMetadata.openGraph = {
+    metadata.openGraph = {
       images: [
         {
           url: imageUrl,
@@ -39,14 +38,13 @@ export async function generateMetadata({
         },
       ],
     };
-    // Twitter
-    baseMetadata.twitter = {
+    metadata.twitter = {
       card: 'summary_large_image',
       images: [imageUrl],
     };
   }
 
-  return baseMetadata;
+  return metadata;
 }
 
 export default async function BlogPost({
