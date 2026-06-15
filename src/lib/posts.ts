@@ -12,6 +12,7 @@ export type PostMeta = {
   date: string; // ISO yyyy-mm-dd
   tags: string[];
   excerpt: string;
+  image?: string;
 };
 
 export type Post = PostMeta & {
@@ -43,6 +44,7 @@ export function getAllPostsMeta(): PostMeta[] {
       excerpt:
         (data.excerpt as string) ||
         content.replace(/[#>*`_\-]/g, "").trim().slice(0, 160),
+      image: (data.image as string) || undefined,
     };
   });
   // newest first
@@ -61,11 +63,12 @@ export async function getPost(slug: string): Promise<Post | null> {
     date: (data.date as string) || "1970-01-01",
     tags: (data.tags as string[]) || [],
     excerpt: (data.excerpt as string) || "",
+    image: (data.image as string) || undefined,
     contentHtml: processed.toString(),
   };
 }
 
-// Format 2026-06-11 -> "2026 · 06 · 11" (kymu.dev style)
+// Format 2026-06-11 -> "2026 · 06 · 11"
 export function formatDate(iso: string): string {
   const [y, m, d] = iso.split("-");
   if (!y || !m || !d) return iso;
