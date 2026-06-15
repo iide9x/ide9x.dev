@@ -58,7 +58,7 @@ export default function About() {
         </h1>
         <div className="mt-6 space-y-4 text-muted leading-relaxed max-w-xl">
           <p>
-            I&apos;m a {site.role.toLowerCase()}. I spend my time finding and
+            I&apos;m a Security Researcher and Bug Bounty Hunter. I spend my time finding and
             reporting vulnerabilities, and turning small bugs into bigger,
             demonstrable impact.
           </p>
