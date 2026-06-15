@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getAllSlugs, getPost, formatDate } from "@/lib/posts";
+import { site } from "@/lib/config";
 import type { Metadata } from "next";
 
 export const dynamicParams = false;
@@ -19,10 +20,35 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const post = await getPost(params.slug);
   if (!post) return { title: "Not found" };
-  return {
+
+  const baseMetadata: Metadata = {
     title: post.title,
     description: post.excerpt,
   };
+
+  if (post.image) {
+    const imageUrl = `${site.url}${post.image.startsWith('/') ? post.image : `/${post.image}`}`;
+    // Open Graph
+    baseMetadata.openGraph = {
+      ...(baseMetadata.openGraph ?? {}),
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    };
+    // Twitter
+    baseMetadata.twitter = {
+      ...(baseMetadata.twitter ?? {}),
+      card: 'summary_large_image',
+      images: [imageUrl],
+    };
+  }
+
+  return baseMetadata;
 }
 
 export default async function BlogPost({
