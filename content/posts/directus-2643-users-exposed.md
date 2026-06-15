@@ -1,6 +1,7 @@
 ---
 title: "2,643 Users Exposed: The Hidden Cost of a Forgotten Permission"
 date: "2026-06-15"
+image: "/images/directus-banner.png"
 tags: ["CMS", "Directus", "Unauth-API", "PII"]
 excerpt: "A misconfigured public role permission on a Directus CMS endpoint leaked 2,643 user records, 964 internal employee emails, and a complete partner ecosystem map — no auth required."
 ---

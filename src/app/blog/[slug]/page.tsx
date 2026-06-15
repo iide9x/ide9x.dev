@@ -28,20 +28,28 @@ export async function generateMetadata({
 
   if (post.image) {
     const imageUrl = `${site.url}${post.image.startsWith('/') ? post.image : `/${post.image}`}`;
-    metadata.openGraph = {
-      images: [
-        {
-          url: imageUrl,
-          width: 1200,
-          height: 630,
-          alt: post.title,
-        },
-      ],
-    };
-    metadata.twitter = {
-      card: 'summary_large_image',
-      images: [imageUrl],
-    };
+    // Ensure openGraph exists and add image
+    if (!metadata.openGraph) {
+      metadata.openGraph = {
+        images: [],
+      };
+    }
+    metadata.openGraph.images = [
+      {
+        url: imageUrl,
+        width: 1200,
+        height: 630,
+        alt: post.title,
+      },
+    ];
+    // Ensure twitter exists and set card and image
+    if (!metadata.twitter) {
+      metadata.twitter = {
+        card: 'summary_large_image',
+      };
+    }
+    metadata.twitter.card = 'summary_large_image';
+    metadata.twitter.images = [imageUrl];
   }
 
   return metadata;
